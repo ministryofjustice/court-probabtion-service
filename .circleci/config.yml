@@ -40,7 +40,7 @@ jobs:
         paths:
         - node_modules
 
-  copy_image_to_ecs:
+  push_to_ecs:
     <<: *defaults
     steps:
       - checkout
