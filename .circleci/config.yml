@@ -46,29 +46,18 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/app
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - *install_aws_cli
       - run:
           name: publish image to ecs
           command: |
             login="$(aws ecr get-login --region eu-west-1 --no-include-email)"
             ${login}
+            docker build -t 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:${CIRCLE_BUILD_NUM} .
+            docker tag 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:${CIRCLE_BUILD_NUM} 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:latest
             docker push "926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:latest"
             docker push "926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:${CIRCLE_BUILD_NUM}"
-
-  build_docker:
-    <<: *defaults
-    steps:
-    - checkout
-    - attach_workspace:
-        at: ~/app
-    - setup_remote_docker:
-        docker_layer_caching: true
-    - run:
-        name: Build container and publish to docker hub
-        command: |
-          docker build -t 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:${CIRCLE_BUILD_NUM} .
-          docker tag 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:${CIRCLE_BUILD_NUM} 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:latest
 
   deploy_dev:
     <<: *deploy_container_config
@@ -101,15 +90,12 @@ workflows:
           filters:
             tags:
               ignore: /.*/
-      - build_docker:
+      - push_to_ecs:
           requires:
           - build
           filters:
             branches:
               only: master
-      - copy_image_to_ecs:
-          requires:
-          - build_docker
       - deploy_dev:
           requires:
-          - copy_image_to_ecs
+          - push_to_ecs
