@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: court-probation
+  labels:
+    app: court-probation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: court-probation-app
+  template:
+    metadata:
+      labels:
+        app: court-probation-app
+    spec:
+      containers:
+        - name: court-probation
+          image: 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:1.1
+          ports:
+            - containerPort: 8000
+          env:
+            - name: PORT
+              value: '8000'

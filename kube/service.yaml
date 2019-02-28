@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: court-probation-service
+spec:
+  selector:
+    app: court-probation-app
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: NodePort
+
