@@ -80,6 +80,7 @@ jobs:
           | kubectl apply -f -
           kubectl apply \
             -f ./kube/ingress.yaml \
+            -f ./kube/dashboard.yaml \
             -f ./kube/service.yaml
 
 workflows:
