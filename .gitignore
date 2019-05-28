@@ -24,3 +24,5 @@ hs_err_pid*
 /*.iml
 /public/stylesheets/style.css.map
 /public/stylesheets/style.css
+/node_modules
+/.idea
