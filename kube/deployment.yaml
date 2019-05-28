@@ -28,3 +28,5 @@ spec:
           env:
             - name: PORT
               value: '8000'
+            - name: COURT_LIST_URL
+              value: 'http://court-list-service-service:8000'

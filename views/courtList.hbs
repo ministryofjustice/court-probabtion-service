@@ -1,0 +1,106 @@
+{{#each sessions as |session|}}
+
+    <table>
+        <thead>
+        <tr>
+            <th style="border-bottom: black 1px solid">Full Court List for {{session.dateOfHearing}}</th>
+            <th style="border-bottom: black 1px solid" class="right-cell">{{session.courtName}}</th>
+        </tr>
+        <tr>
+            <th>LJA: {{session.localJusticeArea}}</th>
+            <th class="right-cell">CMU: {{session.crimeManagementUnit}}</th>
+        </tr>
+        <tr>
+            <th style="border-bottom: black 1px solid">Session: {{session.startTime}} - {{session.endTime}} </th>
+            <th style="border-bottom: black 1px solid" class="right-cell">Courtroom: {{session.courtRoom}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each session.blocks as |block|}}
+        <tr>
+            <td colspan="2">
+                    <table style="margin-bottom: 60px">
+                        <thead>
+                        <tr>
+                            <th colspan="2" style="border-bottom: black 1px solid">Block: {{block.startTime}} - {{block.endTime}}  {{block.description}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each block.cases as |case|}}
+                            <tr>
+                                <td style="padding-top: 10px">{{case.caseSequence}}</td>
+                                <td>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th width="40%"><span style="font-weight: bold">{{case.defendant.name}}</span> ({{case.defendant.gender}})</th>
+                                            <th>DOB: {{case.defendant.dateOfBirth}}</th>
+                                            <th class="right-cell" style="font-weight: bold">{{case.caseNumber}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                {{case.defendant.address.line1}},
+                                                {{case.defendant.address.line2}},
+                                                {{case.defendant.address.line3}},
+                                                {{case.defendant.address.line4}},
+                                                {{case.defendant.address.line5}},
+                                                {{case.defendant.address.postcode}}
+                                            </td>
+                                            <td class="right-cell">
+                                                ({{case.listingNumber}} Listing)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Informant: {{case.informant}}</td>
+                                            <td>URN: {{case.urn}}</td>
+                                            <td>ASN: {{case.asn}}</td>
+                                        </tr>
+                                        <tr>
+                                           <td colspan="3">Estimated duration: {{case.estimatedDuration}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                            <table>
+                                                <tbody>
+                                                {{#each case.offences as |offence|}}
+                                                <tr>
+                                                    <td>{{offence.sequence}}</td>
+                                                    <td>
+                                                        <div>
+                                                            <span>{{offence.code}}</span>
+                                                            <span style="font-weight: bold">{{offence.title}}</span>
+                                                        </div>
+                                                        <div>
+                                                            {{offence.summary}}
+                                                        </div>
+                                                        <div>
+                                                            {{offence.contraryToActAndSection}}
+                                                        </div>
+                                                        <div>
+                                                            Plea: {{offence.plea}} Plea Date: {{offence.pleaDate}}
+                                                            Adjourned from: {{offence.adjournedDate}}, {{offence.adjournedReason}}
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/each}}

@@ -1,0 +1,8 @@
+<h1>Court list demo</h1>
+<p>Fake Libra list of list for demonstration purposes</p>
+
+<ul>
+    {{#each courtDates}}
+        <li><a href="/courtList?courtName={{this.courtName}}&dateOfHearing={{this.dateOfHearing}}">{{this.courtName}} {{this.dateOfHearing}}</a></li>
+    {{/each}}
+</ul>
