@@ -58,6 +58,9 @@
                                             <td>ASN: {{case.asn}}</td>
                                         </tr>
                                         <tr>
+                                           <td colspan="3">{{case.additionalInformation}}</td>
+                                        </tr>
+                                        <tr>
                                            <td colspan="3">Estimated duration: {{case.estimatedDuration}}</td>
                                         </tr>
                                         <tr>
@@ -77,6 +80,9 @@
                                                         </div>
                                                         <div>
                                                             {{offence.contraryToActAndSection}}
+                                                        </div>
+                                                        <div>
+                                                            {{offence.statementOfFact}}
                                                         </div>
                                                         <div>
                                                             Plea: {{offence.plea}} Plea Date: {{offence.pleaDate}}
