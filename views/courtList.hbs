@@ -34,34 +34,37 @@
                                         <thead>
                                         <tr>
                                             <th width="40%"><span style="font-weight: bold">{{case.defendant.name}}</span> ({{case.defendant.gender}})</th>
-                                            <th>DOB: {{case.defendant.dateOfBirth}}</th>
+                                            <th>{{#if case.defendant.dateOfBirth}}DOB: {{case.defendant.dateOfBirth}} Age: {{case.defendant.age}}{{/if}}</th>
                                             <th class="right-cell" style="font-weight: bold">{{case.caseNumber}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <td colspan="2">
-                                                {{case.defendant.address.line1}},
-                                                {{case.defendant.address.line2}},
-                                                {{case.defendant.address.line3}},
-                                                {{case.defendant.address.line4}},
-                                                {{case.defendant.address.line5}},
-                                                {{case.defendant.address.postcode}}
+                                                {{#if case.defendant.address.line1}}{{case.defendant.address.line1}},{{/if}}
+                                                {{#if case.defendant.address.line2}}{{case.defendant.address.line2}},{{/if}}
+                                                {{#if case.defendant.address.line3}}{{case.defendant.address.line3}},{{/if}}
+                                                {{#if case.defendant.address.line4}}{{case.defendant.address.line4}},{{/if}}
+                                                {{#if case.defendant.address.line5}}{{case.defendant.address.line5}},{{/if}}
+                                                {{#if case.defendant.address.postcode}}{{case.defendant.address.postcode}}{{/if}}
                                             </td>
                                             <td class="right-cell">
                                                 ({{case.listingNumber}} Listing)
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Informant: {{case.informant}}</td>
-                                            <td>URN: {{case.urn}}</td>
-                                            <td>ASN: {{case.asn}}</td>
+                                            <td colspan="3">{{case.solicitor}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{#if case.informant}}Informant: {{case.informant}}{{/if}}</td>
+                                            <td>{{#if case.urn}}URN: {{case.urn}}{{/if}}</td>
+                                            <td>{{#if case.asn}}ASN: {{case.asn}}{{/if}}</td>
                                         </tr>
                                         <tr>
                                            <td colspan="3">{{case.additionalInformation}}</td>
                                         </tr>
                                         <tr>
-                                           <td colspan="3">Pre-hearing cond: {{case.bailConditions}}</td>
+                                           <td colspan="3">{{#if case.bailConditions}}Pre-hearing cond: {{case.bailConditions}}{{/if}}</td>
                                         </tr>
                                         <tr>
                                            <td colspan="3">Estimated duration: {{case.estimatedDuration}}</td>
@@ -72,7 +75,7 @@
                                                 <tbody>
                                                 {{#each case.offences as |offence|}}
                                                 <tr>
-                                                    <td>{{offence.sequence}}</td>
+                                                    <td width="30px">{{offence.sequence}}</td>
                                                     <td>
                                                         <div>
                                                             <span>{{offence.code}}</span>
@@ -88,10 +91,10 @@
                                                             {{offence.statementOfFact}}
                                                         </div>
                                                         <div>
-                                                            Plea: {{offence.plea}} Plea Date: {{offence.pleaDate}}
+                                                            {{#if offence.plea}}Plea: {{offence.plea}} Plea Date: {{offence.pleaDate}}{{/if}}
                                                         </div>
                                                         <div>
-                                                            Adjourned from: {{offence.adjournedDate}}, {{offence.adjournedReason}}
+                                                            {{#if offence.adjournedDate}}Adjourned from: {{offence.adjournedDate}}, {{offence.adjournedReason}}{{/if}}
                                                         </div>
                                                     </td>
 
