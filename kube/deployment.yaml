@@ -22,11 +22,11 @@ spec:
     spec:
       containers:
         - name: court-probation
-          image: 926803513772.dkr.ecr.eu-west-1.amazonaws.com/probation-services/court-probation:1.1
+          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/probation-services/court-probation:latest
           ports:
             - containerPort: 8000
           env:
             - name: PORT
               value: '8000'
             - name: COURT_LIST_URL
-              value: 'http://court-list-service-service:8000'
+              value: 'http://court-list-service:8000'
