@@ -56,7 +56,7 @@ jobs:
             login="$(aws ecr get-login --region eu-west-2 --no-include-email)"
             ${login}
             docker build -t ${ECR_ENDPOINT}/probation-services/court-probation-service:${CIRCLE_SHA1} .
-            docker tag ${ECR_ENDPOINT}/probation-services/court-probation-service:${CIRCLE_SHA1} ${ECR_ENDPOINT}/probation-services/court-probation:latest
+            docker tag ${ECR_ENDPOINT}/probation-services/court-probation-service:${CIRCLE_SHA1} ${ECR_ENDPOINT}/probation-services/court-probation-service:latest
             docker push "${ECR_ENDPOINT}/probation-services/court-probation-service:latest"
             docker push "${ECR_ENDPOINT}/probation-services/court-probation-service:${CIRCLE_SHA1}"
 
