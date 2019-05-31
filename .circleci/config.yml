@@ -77,7 +77,7 @@ jobs:
     - deploy:
         name: Deploy to dev
         command: |
-          kubectl set image -f ./kube/deployment.yaml court-probation=${ECR_ENDPOINT}/probation-services/court-probation:${CIRCLE_SHA1} --local -o yaml \
+          kubectl set image -f ./kube/deployment.yaml court-probation=${ECR_ENDPOINT}/probation-services/court-probation-service:${CIRCLE_SHA1} --local -o yaml \
           | kubectl apply -f -
           kubectl apply \
             -f ./kube/ingress.yaml \

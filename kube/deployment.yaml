@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: court-probation
+  name: court-probation-service
   labels:
-    app: court-probation
+    app: court-probation-app
 spec:
   replicas: 2
   revisionHistoryLimit: 2
@@ -21,8 +21,8 @@ spec:
         app: court-probation-app
     spec:
       containers:
-        - name: court-probation
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/probation-services/court-probation:latest
+        - name: court-probation-service
+          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/probation-services/court-probation-service:latest
           ports:
             - containerPort: 8000
           env:
