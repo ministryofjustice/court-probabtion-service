@@ -20,6 +20,9 @@ module.exports = {
   apis: {
     courtList: {
       url: get('COURT_LIST_URL', 'http://localhost:8082', true)
+    },
+    offender: {
+      url: get('OFFENDER_URL', 'http://localhost:8083', true)
     }
   }
 }

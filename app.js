@@ -8,7 +8,8 @@ var sassMiddleware = require('node-sass-middleware');
 var indexRouter = require('./routes/index');
 var courtListsRouter = require('./routes/courtLists');
 var courtListRouter = require('./routes/courtList');
-
+var api = require('./routes/api');
+var hbs = require('hbs')
 var app = express();
 
 // view engine setup
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/courtLists', courtListsRouter);
 app.use('/courtList', courtListRouter);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,6 +47,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+hbs.registerHelper('escape', function(variable) {
+  return variable.replace(/(['"])/g, '\\$1');
 });
 
 module.exports = app;

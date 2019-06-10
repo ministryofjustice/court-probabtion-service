@@ -17,12 +17,13 @@
         </thead>
         <tbody>
         {{#each session.blocks as |block|}}
-        <tr>
-            <td colspan="2">
+            <tr>
+                <td colspan="2">
                     <table style="margin-bottom: 60px">
                         <thead>
                         <tr>
-                            <th colspan="2" style="border-bottom: black 1px solid">Block: {{block.startTime}} - {{block.endTime}}  {{block.description}}</th>
+                            <th colspan="2" style="border-bottom: black 1px solid">Block: {{block.startTime}}
+                                - {{block.endTime}}  {{block.description}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,19 +34,28 @@
                                     <table>
                                         <thead>
                                         <tr>
-                                            <th width="40%"><span style="font-weight: bold">{{case.defendant.name}}</span> ({{case.defendant.gender}})</th>
-                                            <th>{{#if case.defendant.dateOfBirth}}DOB: {{case.defendant.dateOfBirth}} Age: {{case.defendant.age}}{{/if}}</th>
+                                            <th width="40%"><span
+                                                    style="font-weight: bold">{{case.defendant.name}}</span>
+                                                ({{case.defendant.gender}})
+                                            </th>
+                                            <th>{{#if case.defendant.dateOfBirth}}DOB: {{case.defendant.dateOfBirth}}
+                                                Age: {{case.defendant.age}}{{/if}}</th>
                                             <th class="right-cell" style="font-weight: bold">{{case.caseNumber}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <td colspan="2">
-                                                {{#if case.defendant.address.line1}}{{case.defendant.address.line1}},{{/if}}
-                                                {{#if case.defendant.address.line2}}{{case.defendant.address.line2}},{{/if}}
-                                                {{#if case.defendant.address.line3}}{{case.defendant.address.line3}},{{/if}}
-                                                {{#if case.defendant.address.line4}}{{case.defendant.address.line4}},{{/if}}
-                                                {{#if case.defendant.address.line5}}{{case.defendant.address.line5}},{{/if}}
+                                                {{#if case.defendant.address.line1}}{{case.defendant.address.line1}}
+                                                    ,{{/if}}
+                                                {{#if case.defendant.address.line2}}{{case.defendant.address.line2}}
+                                                    ,{{/if}}
+                                                {{#if case.defendant.address.line3}}{{case.defendant.address.line3}}
+                                                    ,{{/if}}
+                                                {{#if case.defendant.address.line4}}{{case.defendant.address.line4}}
+                                                    ,{{/if}}
+                                                {{#if case.defendant.address.line5}}{{case.defendant.address.line5}}
+                                                    ,{{/if}}
                                                 {{#if case.defendant.address.postcode}}{{case.defendant.address.postcode}}{{/if}}
                                             </td>
                                             <td class="right-cell">
@@ -61,48 +71,55 @@
                                             <td>{{#if case.asn}}ASN: {{case.asn}}{{/if}}</td>
                                         </tr>
                                         <tr>
-                                           <td colspan="3">{{case.additionalInformation}}</td>
+                                            <td colspan="3">{{case.additionalInformation}}</td>
                                         </tr>
                                         <tr>
-                                           <td colspan="3">{{#if case.bailConditions}}Pre-hearing cond: {{case.bailConditions}}{{/if}}</td>
+                                            <td colspan="3">{{#if case.bailConditions}}
+                                                Pre-hearing cond: {{case.bailConditions}}{{/if}}</td>
                                         </tr>
                                         <tr>
-                                           <td colspan="3">Estimated duration: {{case.estimatedDuration}}</td>
+                                            <td colspan="3">Estimated duration: {{case.estimatedDuration}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">
-                                            <table>
-                                                <tbody>
-                                                {{#each case.offences as |offence|}}
-                                                <tr>
-                                                    <td width="30px">{{offence.sequence}}</td>
-                                                    <td>
-                                                        <div>
-                                                            <span>{{offence.code}}</span>
-                                                            <span style="font-weight: bold">{{offence.title}}</span>
-                                                        </div>
-                                                        <div>
-                                                            {{offence.summary}}
-                                                        </div>
-                                                        <div>
-                                                            {{offence.contraryToActAndSection}}
-                                                        </div>
-                                                        <div>
-                                                            {{offence.statementOfFact}}
-                                                        </div>
-                                                        <div>
-                                                            {{#if offence.plea}}Plea: {{offence.plea}} Plea Date: {{offence.pleaDate}}{{/if}}
-                                                        </div>
-                                                        <div>
-                                                            {{#if offence.adjournedDate}}Adjourned from: {{offence.adjournedDate}}, {{offence.adjournedReason}}{{/if}}
-                                                        </div>
-                                                    </td>
+                                                <table>
+                                                    <tbody>
+                                                    {{#each case.offences as |offence|}}
+                                                        <tr>
+                                                            <td width="30px">{{offence.sequence}}</td>
+                                                            <td>
+                                                                <div>
+                                                                    <span>{{offence.code}}</span>
+                                                                    <span style="font-weight: bold">{{offence.title}}</span>
+                                                                </div>
+                                                                <div>
+                                                                    {{offence.summary}}
+                                                                </div>
+                                                                <div>
+                                                                    {{offence.contraryToActAndSection}}
+                                                                </div>
+                                                                <div>
+                                                                    {{offence.statementOfFact}}
+                                                                </div>
+                                                                <div>
+                                                                    {{#if offence.plea}}Plea: {{offence.plea}} Plea
+                                                                        Date: {{offence.pleaDate}}{{/if}}
+                                                                </div>
+                                                                <div>
+                                                                    {{#if offence.adjournedDate}}
+                                                                        Adjourned from: {{offence.adjournedDate}}
+                                                                        , {{offence.adjournedReason}}{{/if}}
+                                                                </div>
+                                                            </td>
 
-                                                </tr>
-                                                {{/each}}
-                                                </tbody>
-                                            </table>
+                                                        </tr>
+                                                    {{/each}}
+                                                    </tbody>
+                                                </table>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><a title="SPIKE to show how we might request an OM update" href="javascript:sendOMUpdateRequest('{{case.caseNumber}}', '{{session.dateOfHearing}}','{{escape session.courtName}}')">Request OM Update</a></td>
                                         </tr>
                                         </tbody>
 
@@ -112,8 +129,8 @@
                         {{/each}}
                         </tbody>
                     </table>
-            </td>
-        </tr>
+                </td>
+            </tr>
         {{/each}}
         </tbody>
     </table>
