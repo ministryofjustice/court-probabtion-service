@@ -1,6 +1,19 @@
 function sendOMUpdateRequest(caseNumber, dateOfHearing, courtName) {
-  ajax.get('/api/requestOMUpdate', {caseNumber: caseNumber, dateOfHearing: dateOfHearing, courtName: courtName}, function() {
-    alert('Request sent')
+  ajax.get('/api/requestOMUpdate', {caseNumber: caseNumber, dateOfHearing: dateOfHearing, courtName: courtName}, function(response) {
+    let createdNote = JSON.parse(response)
+    let updateLink = document.getElementById(caseNumber)
+    updateLink.setAttribute('style', 'display: inline')
+    updateLink.setAttribute('href', 'javascript:getOMUpdate(' + createdNote.id + ')')
+  });
+}
+
+function getOMUpdate(id ) {
+  ajax.get('/api/getOMUpdate', {id: id}, function(response) {
+    if (response === '') {
+      alert("No update received yet")
+    } else {
+      alert(response)
+    }
   });
 }
 

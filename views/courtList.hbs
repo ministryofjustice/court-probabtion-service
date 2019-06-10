@@ -119,7 +119,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><a title="SPIKE to show how we might request an OM update" href="javascript:sendOMUpdateRequest('{{case.caseNumber}}', '{{session.dateOfHearing}}','{{escape session.courtName}}')">Request OM Update</a></td>
+                                            <td colspan="3">
+                                                <a title="SPIKE to show how we might request an OM update" href="javascript:sendOMUpdateRequest('{{case.caseNumber}}', '{{session.dateOfHearing}}','{{escape session.courtName}}')">Request OM Update</a>
+                                                <a id='{{case.caseNumber}}' style="display: none" href="#">Check for updates</a>
+                                            </td>
                                         </tr>
                                         </tbody>
 
