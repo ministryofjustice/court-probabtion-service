@@ -9,6 +9,7 @@ const apiUrl = config.apis.courtList.url
 const offenderApiUrl = config.apis.offender.url
 
 const fakeOffenderId = '2500333160'
+const longLivedToken = config.apis.courtList.longLivedToken
 
 // Spike to show how we could add an contact in Delius
 router.get('/requestOMUpdate', function(req, res, next) {
@@ -20,6 +21,7 @@ router.get('/requestOMUpdate', function(req, res, next) {
     .get(`${apiUrl}/court/${courtName}/list`)
     .query({ date: dateOfHearing })
     .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${longLivedToken}`)
     .then(result => {
       const selectedCase = findCase(result.body.sessions, caseNumber)
       const selectedSession = findSession(result.body.sessions, caseNumber)

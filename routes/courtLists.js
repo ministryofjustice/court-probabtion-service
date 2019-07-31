@@ -5,11 +5,13 @@ const config = require('../config')
 const log = require('../log')
 
 const apiUrl = config.apis.courtList.url
+const longLivedToken = config.apis.courtList.longLivedToken
 
 router.get('/', (req, res, next) => {
   request
     .get(`${apiUrl}/court/list`)
     .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${longLivedToken}`)
     .then(result => {
       res.render('courtLists', { courtDates: toCourtsByDate(result.body.sessions) });
     })
